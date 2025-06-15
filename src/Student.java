@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
     private String id;
     private String name;
     private int age;
-    private List<String> courses;
+    private ArrayList<String> courses;
     private double gpa;
 
     // constructors
@@ -12,7 +13,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String id, String name, int age, List<String> courses, double gpa) {
+    public Student(String id, String name, int age, ArrayList<String> courses, double gpa) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -57,7 +58,7 @@ public class Student {
         this.age = age;
     }
 
-    public void setCourses(List<String> courses) {
+    public void setCourses(ArrayList<String> courses) {
         this.courses = courses;
     }
 
