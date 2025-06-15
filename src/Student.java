@@ -1,0 +1,81 @@
+import java.util.List;
+
+public class Student {
+    private String id;
+    private String name;
+    private int age;
+    private List<String> courses;
+    private double gpa;
+
+    // constructors
+
+    public Student() {
+    }
+
+    public Student(String id, String name, int age, List<String> courses, double gpa) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.courses = courses;
+        this.gpa = gpa;
+    }
+
+    // getters
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public List<String> getCourses() {
+        return courses;
+    }
+
+    public double getGpa() {
+        return gpa;
+    }
+
+    // setters
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setCourses(List<String> courses) {
+        this.courses = courses;
+    }
+
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+
+    // to String
+
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", courses=" + courses +
+                ", gpa=" + gpa +
+                '}';
+    }
+}
