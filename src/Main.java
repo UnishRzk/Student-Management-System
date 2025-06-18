@@ -16,7 +16,7 @@ class Main{
             System.out.println("4. Update Student");
             System.out.println("5. Remove Student");
             System.out.println("0. Exit");
-            System.out.println("Choose an option: ");
+            System.out.print("Choose an option: ");
 
             int choice = sc.nextInt();
             sc.nextLine();
@@ -36,12 +36,13 @@ class Main{
                     double gpa = sc.nextDouble();
                     sc.nextLine();
 
-                    System.out.println("Enter the number of courses: ");
+                    System.out.print("Enter the number of courses: ");
                     int n_courses = sc.nextInt();
+                    sc.nextLine();
 
                     ArrayList<String> courses = new ArrayList<>();
                     for (int i = 0; i < n_courses; i++) {
-                        System.out.println("Enter Course "+ (i+1) + ": ");
+                        System.out.print("Enter Course "+ (i+1) + ": ");
                         courses.add(sc.nextLine());
                     }
 
@@ -54,7 +55,7 @@ class Main{
                     break;
 
                 case 3:
-                    System.out.println("Enter the Student id: ");
+                    System.out.print("Enter the Student id: ");
                     String searchid = sc.nextLine();
                     Student found = manager.findById(searchid);
 
@@ -83,14 +84,13 @@ class Main{
                     break;
 
                 case 5:
-                    System.out.println("Enter ID to remove: ");
+                    System.out.print("Enter ID to remove: ");
                     String removeId = sc.nextLine();
                     manager.removeStudent(removeId);
-                    System.out.println("Student Removed Sucessfully");
                     break;
 
                 case 0:
-                    System.out.println("Exiting");
+                    System.out.println("Exiting.....");
                     sc.close();
                     System.exit(0);
                     break;
