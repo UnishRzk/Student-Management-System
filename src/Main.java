@@ -18,11 +18,15 @@ class Main{
             System.out.println("0. Exit");
             System.out.print("Choose an option: ");
 
-            int choice = sc.nextInt();
-            sc.nextLine();
+            String choice = sc.nextLine();
+            if (choice.length() >= 3){
+                choice = choice.trim().toLowerCase().substring(0,3);
+            }
 
             switch (choice){
-                case 1:
+
+                case "add":
+                case "1":
                     System.out.print("Enter ID: ");
                     String id = sc.nextLine();
 
@@ -50,11 +54,13 @@ class Main{
                     manager.addStudent(student);
                     break;
 
-                case 2:
+                case "dis":
+                case "2":
                     manager.displayAllStudents();
                     break;
 
-                case 3:
+                case "fin":
+                case "3":
                     System.out.print("Enter the Student id: ");
                     String searchid = sc.nextLine();
                     Student found = manager.findById(searchid);
@@ -66,7 +72,8 @@ class Main{
                     }
                     break;
 
-                case 4:
+                case "upd":
+                case "4":
                     System.out.print("Enter ID to update: ");
                     String updateId = sc.nextLine();
 
@@ -83,13 +90,15 @@ class Main{
                     manager.updateStudent(updateId,newName,newAge,newGpa);
                     break;
 
-                case 5:
+                case "rem":
+                case "5":
                     System.out.print("Enter ID to remove: ");
                     String removeId = sc.nextLine();
                     manager.removeStudent(removeId);
                     break;
 
-                case 0:
+                case "exi":
+                case "0":
                     System.out.println("Exiting.....");
                     sc.close();
                     System.exit(0);
