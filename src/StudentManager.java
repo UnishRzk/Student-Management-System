@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager {
-    private List<Student> studentList;
+    private final List<Student> studentList;
 
     public StudentManager() {
         studentList = new ArrayList<>();
@@ -33,28 +33,26 @@ public class StudentManager {
         return null;
     }
 
-    public boolean removeStudent(String id){
+    public void removeStudent(String id){
         Student student = findById(id);
         if (student != null){
             studentList.remove(student);
             System.out.println("Student Removed Sucessfully");
-            return true;
+            return;
         }
         System.out.println("Student not found");
-        return false;
     }
 
-    public boolean updateStudent(String id, String newName, int newAge, double newGpa) {
+    public void updateStudent(String id, String newName, int newAge, double newGpa) {
         Student student = findById(id);
         if (student != null) {
             student.setName(newName);
             student.setAge(newAge);
             student.setGpa(newGpa);
             System.out.println("Student updated successfully.");
-            return true;
+            return;
         }
         System.out.println("Student not found.");
-        return false;
     }
 
 
