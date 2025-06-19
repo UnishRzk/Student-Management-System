@@ -12,9 +12,6 @@ public class GUI {
         Image scaledImage = logo.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         ImageIcon resizedLogo = new ImageIcon(scaledImage);
 
-
-
-
         // for the content inside of headPanel
         JLabel heading = new JLabel();
         heading.setText("Student Management System");
@@ -54,7 +51,19 @@ public class GUI {
         forGpa.setBounds(10, 140, 100, 30);
         JTextField gpa = new JTextField();
         gpa.setBounds(60, 140, 150, 30);
+        
+        // For the Buttons panel
+        JButton addStudents = new JButton("Add Students");
+        addStudents.setBounds(10,30,120,20);
 
+        JButton updateStudents = new JButton("Update Students");
+        updateStudents.setBounds(10,50,120,20);
+
+        JButton removeStudents = new JButton("Remove Students");
+        removeStudents.setBounds(10,80,120,20);
+
+        JButton searchStudents = new JButton("Search Student");
+        searchStudents.setBounds(10,110,120,20);
 
 
         // heading panel
@@ -67,6 +76,12 @@ public class GUI {
         StudentPanel.setBounds(0,100,550,500);
         StudentPanel.setLayout(null);
         StudentPanel.setBorder(BorderFactory.createLineBorder(Color.RED)); // debug
+        
+        // Buttons panel
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBounds(550,100,550,500);
+        buttonPanel.setLayout(null);
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
 
 
@@ -104,6 +119,12 @@ public class GUI {
         StudentPanel.add(forGpa);
         StudentPanel.add(gpa);
 
+        buttonPanel.add(addStudents);
+        buttonPanel.add(updateStudents);
+        buttonPanel.add(removeStudents);
+        buttonPanel.add(searchStudents);
+
+        frame.add(buttonPanel);
         frame.add(headPanel);
         frame.add(StudentPanel);
 
