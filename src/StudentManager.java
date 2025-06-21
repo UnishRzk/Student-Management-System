@@ -2,14 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager {
-    private final List<Student> studentList;
+
+
+
+
+    FileHandler fileHandler = new FileHandler();
+
+    private  List<Student> studentList;
 
     public StudentManager() {
-        studentList = new ArrayList<>();
+        studentList = fileHandler.loadFromFile();
     }
 
     public void addStudent(Student student){
         studentList.add(student);
+        fileHandler.saveToFile(studentList);
         System.out.println("Student added Sucessfully");
     }
 
@@ -37,6 +44,7 @@ public class StudentManager {
         Student student = findById(id);
         if (student != null){
             studentList.remove(student);
+            fileHandler.saveToFile(studentList);
             System.out.println("Student Removed Sucessfully");
             return;
         }
@@ -49,6 +57,7 @@ public class StudentManager {
             student.setName(newName);
             student.setAge(newAge);
             student.setGpa(newGpa);
+            fileHandler.saveToFile(studentList);
             System.out.println("Student updated successfully.");
             return;
         }
