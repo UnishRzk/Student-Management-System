@@ -4,42 +4,147 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URI;
 
 public class GUI {
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Student Management System");
+        frame.setSize(900, 700);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.getContentPane().setBackground(new Color(0xEBD6FB));
+        frame.setIconImage(new ImageIcon("logo.png").getImage());
 
-        // for the logo
-
+        // Headd Panel
         ImageIcon logo = new ImageIcon("tLogo.png");
-        Image scaledImage = logo.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+        Image scaledImage = logo.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon resizedLogo = new ImageIcon(scaledImage);
 
-        // for the content inside of headPanel
-        JLabel heading = new JLabel();
-        heading.setText("com.unish.model.Student Management System");
+        JLabel logoLabel = new JLabel(resizedLogo);
+        logoLabel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        logoLabel.setVerticalAlignment(SwingConstants.CENTER);
 
-        heading.setIcon(resizedLogo);
+        JLabel titleLabel = new JLabel("Student Management System");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 32));
+        titleLabel.setForeground(new Color(0x333333));
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        titleLabel.setVerticalAlignment(SwingConstants.CENTER);
 
-        heading.setHorizontalTextPosition(JLabel.RIGHT);
-        heading.setForeground(Color.BLACK);
-        heading.setFont(new Font("SansSerif",Font.BOLD,32));
-        heading.setIconTextGap(30);
-        heading.setVerticalAlignment(JLabel.TOP);
-        heading.setHorizontalAlignment(JLabel.LEFT);
-
-        // For the Buttons panel
-        Dimension btnSize = new Dimension(175,40);
-
-        CustomButton addStudents = new CustomButton("Add Students",btnSize);
-        CustomButton updateStudents = new CustomButton("Update Students",btnSize);
-        CustomButton removeStudents = new CustomButton("Remove Students",btnSize);
-        CustomButton searchStudents = new CustomButton("Search ",btnSize);
+        JPanel headPanel = new JPanel(new BorderLayout());
+        headPanel.setBounds(0, 0, 900, 80);
+        headPanel.setBackground(new Color(0xF0F0F0));
+        headPanel.add(logoLabel, BorderLayout.WEST);
+        headPanel.add(titleLabel, BorderLayout.CENTER);
+//        headPanel.setBorder(BorderFactory.createLineBorder(Color.RED));
 
 
+        // Button Panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 20));
+        buttonPanel.setBounds(0, 80, 900, 80);
+        buttonPanel.setBackground(new Color(0xF0F0F0));
 
-        // for table panel
+        Dimension btnSize = new Dimension(175, 40);
+        CustomButton addStudents = new CustomButton("Add Students", btnSize);
+        CustomButton updateStudents = new CustomButton("Update Students", btnSize);
+        CustomButton removeStudents = new CustomButton("Remove Students", btnSize);
+        CustomButton searchStudents = new CustomButton("Search", btnSize);
+
+        buttonPanel.add(addStudents);
+        buttonPanel.add(updateStudents);
+        buttonPanel.add(removeStudents);
+        buttonPanel.add(searchStudents);
+//        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+
+        // info Panel
+
+        JPanel infoPanel = new JPanel();
+        infoPanel.setBounds(0, 160, 900, 60);
+        infoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
+        infoPanel.setBackground(new Color(0xF0F0F0));
+
+        Font infoFont = new Font("SansSerif", Font.BOLD, 16);
+        Color infoColor = new Color(0x333333);
+
+// Placeholder summary labels
+        JLabel totalLabel = new JLabel("Total Students: 5444");
+        totalLabel.setFont(infoFont);
+        totalLabel.setForeground(infoColor);
+
+        JLabel avgGPALabel = new JLabel("Average GPA: --");
+        avgGPALabel.setFont(infoFont);
+        avgGPALabel.setForeground(infoColor);
+
+        JLabel avgAgeLabel = new JLabel("Average Age: --");
+        avgAgeLabel.setFont(infoFont);
+        avgAgeLabel.setForeground(infoColor);
+
+        JLabel topCourseLabel = new JLabel("Most Chosen Course: --");
+        topCourseLabel.setFont(infoFont);
+        topCourseLabel.setForeground(infoColor);
+
+// Add all labels to the info panel
+        infoPanel.add(totalLabel);
+        infoPanel.add(avgGPALabel);
+        infoPanel.add(avgAgeLabel);
+        infoPanel.add(topCourseLabel);
+
+
+
+
+        // ===== Table Panel =====
+        JScrollPane tableScrollPane = createStudentTable();
+        tableScrollPane.setPreferredSize(new Dimension(899, 400));
+
+        JPanel tablePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        tablePanel.setBounds(0, 220, 900, 400);
+        tablePanel.setBackground(new Color(0xF0F0F0));
+        tablePanel.add(tableScrollPane);
+
+
+
+        // ===== Credit Panel =====
+        JPanel creditPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 10));
+        creditPanel.setBounds(0, 620, 900, 80);
+        creditPanel.setBackground(new Color(0xF0F0F0));
+
+        JLabel creditLabel = new JLabel(
+                "<html>Copyright &copy; 2025 All rights reserved | Made by " +
+                        "<a href=''>Unish Rajak</a></html>"
+        );
+        creditLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        creditLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        creditLabel.setForeground(Color.BLACK);
+        creditLabel.setToolTipText("Open GitHub");
+
+        creditLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/UnishRzk"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        creditPanel.add(creditLabel);
+
+        // ===== Add All Panels =====
+        frame.add(headPanel);
+        frame.add(buttonPanel);
+        frame.add(infoPanel);
+        frame.add(tablePanel);
+        frame.add(creditPanel);
+
+        frame.setVisible(true);
+    }
+
+    private static JScrollPane createStudentTable() {
         String[] columnNames = {"ID", "Name", "Age", "Courses", "GPA"};
 
         Object[][] data = {
@@ -75,19 +180,19 @@ public class GUI {
                 {"S030", "Peter Parker", 21, "Biochemistry", 3.85}
         };
 
-
-
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        JTable table = new JTable(model);
-        table.setPreferredScrollableViewportSize(new Dimension(800, 350));
-
+        JTable table = new JTable(new DefaultTableModel(data, columnNames));
+        table.setPreferredScrollableViewportSize(new Dimension(880, 400));
         table.setFont(new Font("SansSerif", Font.PLAIN, 14));
         table.setRowHeight(28);
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
         table.setFillsViewportHeight(true);
+        table.setSelectionBackground(new Color(0xFFDDE8E4));
+        table.setSelectionForeground(Color.BLACK);
+        table.setShowHorizontalLines(true);
+        table.setShowVerticalLines(true);
+        table.setGridColor(Color.BLACK);
 
-        // for header
         JTableHeader header = table.getTableHeader();
         header.setFont(new Font("SansSerif", Font.BOLD, 15));
         header.setForeground(Color.WHITE);
@@ -98,83 +203,6 @@ public class GUI {
         header.setPreferredSize(new Dimension(header.getWidth(), 40));
         header.setBorder(BorderFactory.createEmptyBorder());
 
-        // for table
-        table.setSelectionBackground(new Color(0xFFDDE8E4, true));
-        table.setSelectionForeground(Color.BLACK);
-        table.setShowHorizontalLines(true);
-        table.setShowVerticalLines(true);
-        table.setGridColor(Color.black);
-
-
-        // heading panel
-        JPanel headPanel = new JPanel();
-        headPanel.setBounds(0,0,900,100);
-        headPanel.setLayout(new BorderLayout());
-
-        // Buttons panel
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBounds(0,100,900,120);
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER,30,40));
-        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-
-        // Table panel
-        JPanel tablePanel = new JPanel();
-        tablePanel.setBounds(0,220,900,440);
-        tablePanel.setLayout(new FlowLayout(FlowLayout.CENTER,10,20));
-        tablePanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-
-
-
-
-
-
-        frame.setSize(900,700);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setTitle("com.unish.model.Student Management System");
-
-        frame.getContentPane().setBackground(new Color(0xEBD6FB));
-
-
-        ImageIcon image = new ImageIcon("logo.png");
-        frame.setIconImage(image.getImage()); // To set the Icon
-
-
-
-        headPanel.add(heading);
-
-//        StudentPanel.add(forId);
-//        StudentPanel.add(id);
-//
-//        StudentPanel.add(forName);
-//        StudentPanel.add(name);
-//
-//        StudentPanel.add(forAge);
-//        StudentPanel.add(age);
-//
-//        StudentPanel.add(forCourse);
-//        StudentPanel.add(course);
-//
-//        StudentPanel.add(forGpa);
-//        StudentPanel.add(gpa);
-
-        buttonPanel.add(addStudents);
-        buttonPanel.add(updateStudents);
-        buttonPanel.add(removeStudents);
-        buttonPanel.add(searchStudents);
-
-        tablePanel.add(new JScrollPane(table), BorderLayout.CENTER);
-
-        frame.add(buttonPanel);
-        frame.add(headPanel);
-        frame.add(tablePanel);
-//        frame.add(StudentPanel);
-
-
-
-
-        frame.setVisible(true);
+        return new JScrollPane(table);
     }
 }
