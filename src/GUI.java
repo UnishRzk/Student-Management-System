@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 
 public class GUI {
@@ -25,75 +27,124 @@ public class GUI {
         heading.setVerticalAlignment(JLabel.TOP);
         heading.setHorizontalAlignment(JLabel.LEFT);
 
-        // for the Student details Panel
-
-        JLabel forId = new JLabel("Id: ");
-        forId.setBounds(10, 20, 100, 30);
-        JTextField id = new JTextField();
-        id.setBounds(60, 20, 150, 30);
-
-        JLabel forName = new JLabel("Name: ");
-        forName.setBounds(10, 50, 100, 30);
-        JTextField name = new JTextField();
-        name.setBounds(60, 50, 150, 30);
-
-        JLabel forAge = new JLabel("Age: ");
-        forAge.setBounds(10, 80, 100, 30);
-        JTextField age = new JTextField();
-        age.setBounds(60, 80, 150, 30);
-
-        JLabel forCourse = new JLabel("Course: ");
-        forCourse.setBounds(10, 110, 100, 30);
-        JTextField course = new JTextField();
-        course.setBounds(60, 110, 150, 30);
-
-        JLabel forGpa = new JLabel("Gpa: ");
-        forGpa.setBounds(10, 140, 100, 30);
-        JTextField gpa = new JTextField();
-        gpa.setBounds(60, 140, 150, 30);
-        
         // For the Buttons panel
+        Dimension btnSize = new Dimension(140,40);
+
         JButton addStudents = new JButton("Add Students");
-        addStudents.setBounds(10,30,120,20);
-
         JButton updateStudents = new JButton("Update Students");
-        updateStudents.setBounds(10,50,120,20);
-
         JButton removeStudents = new JButton("Remove Students");
-        removeStudents.setBounds(10,80,120,20);
-
         JButton searchStudents = new JButton("Search Student");
-        searchStudents.setBounds(10,110,120,20);
+        JButton viewAll = new JButton("View All");
+
+        addStudents.setFont(new Font("SansSerif",Font.BOLD,12));
+        updateStudents.setFont(new Font("SansSerif",Font.BOLD,12));
+        removeStudents.setFont(new Font("SansSerif",Font.BOLD,12));
+        searchStudents.setFont(new Font("SansSerif",Font.BOLD,12));
+        viewAll.setFont(new Font("SansSerif",Font.BOLD,12));
+
+        addStudents.setPreferredSize(btnSize);
+        updateStudents.setPreferredSize(btnSize);
+        removeStudents.setPreferredSize(btnSize);
+        searchStudents.setPreferredSize(btnSize);
+        viewAll.setPreferredSize(btnSize);
+
+
+        // for table panel
+        String[] columnNames = {"ID", "Name", "Age", "Courses", "GPA"};
+
+        Object[][] data = {
+                {"S001", "Alice Johnson", 20, "Math, Physics", 3.8},
+                {"S002", "Bob Smith", 21, "Chemistry, English", 3.6},
+                {"S003", "Charlie Lee", 19, "Biology, History", 3.9},
+                {"S004", "Diana Prince", 22, "Computer Science", 3.7},
+                {"S005", "Ethan Hunt", 23, "Law, Economics", 3.5},
+                {"S006", "Fiona Gallagher", 20, "Psychology, Sociology", 3.4},
+                {"S007", "George Miller", 21, "Political Science", 3.2},
+                {"S008", "Hannah Brown", 22, "Philosophy, Art", 3.9},
+                {"S009", "Ian Curtis", 19, "Music, Literature", 3.3},
+                {"S010", "Jane Foster", 20, "Astrophysics", 4.0},
+                {"S011", "Kyle Rayner", 22, "Graphic Design", 3.6},
+                {"S012", "Laura Palmer", 21, "Criminology", 3.1},
+                {"S013", "Mike Wheeler", 18, "Computer Engineering", 3.7},
+                {"S014", "Nina Sharp", 24, "Medicine", 3.8},
+                {"S015", "Oscar Wilde", 23, "Creative Writing", 3.9},
+                {"S016", "Paula Dean", 20, "Nutrition Science", 3.5},
+                {"S017", "Quinn James", 21, "Business Admin", 3.4},
+                {"S018", "Riley Matthews", 20, "Early Childhood Education", 3.6},
+                {"S019", "Steve Rogers", 25, "History, Military Studies", 3.7},
+                {"S020", "Tony Stark", 24, "Mechanical Engineering", 3.9},
+                {"S021", "Uma Thurman", 22, "Film Studies", 3.3},
+                {"S022", "Victor Stone", 21, "Cybernetics", 3.8},
+                {"S023", "Wanda Maximoff", 23, "Theoretical Physics", 3.9},
+                {"S024", "Xander Harris", 20, "Anthropology", 3.2},
+                {"S025", "Yasmin Khan", 22, "Medicine", 3.6},
+                {"S026", "Zack Taylor", 21, "Martial Arts, Physics", 3.4},
+                {"S027", "Lara Croft", 24, "Archaeology", 3.9},
+                {"S028", "Bruce Wayne", 26, "Criminology, Business", 3.7},
+                {"S029", "Clark Kent", 25, "Journalism", 4.0},
+                {"S030", "Peter Parker", 21, "Biochemistry", 3.85}
+        };
+
+
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        JTable table = new JTable(model);
+        table.setPreferredScrollableViewportSize(new Dimension(800, 350));
+
+        table.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        table.setRowHeight(28);
+        table.setShowGrid(false);
+        table.setIntercellSpacing(new Dimension(0, 0));
+        table.setFillsViewportHeight(true);
+
+        // for header
+        JTableHeader header = table.getTableHeader();
+        header.setFont(new Font("SansSerif", Font.BOLD, 15));
+        header.setForeground(Color.WHITE);
+        header.setBackground(new Color(0x687FE5));
+        header.setReorderingAllowed(false);
+        header.setResizingAllowed(true);
+        header.setOpaque(true);
+        header.setPreferredSize(new Dimension(header.getWidth(), 40));
+        header.setBorder(BorderFactory.createEmptyBorder());
+
+        // for table
+        table.setSelectionBackground(new Color(0xFFDDE8E4, true));
+        table.setSelectionForeground(Color.BLACK);
+        table.setShowHorizontalLines(true);
+        table.setShowVerticalLines(true);
+        table.setGridColor(Color.black);
 
 
         // heading panel
         JPanel headPanel = new JPanel();
-        headPanel.setBounds(0,0,1100,100);
+        headPanel.setBounds(0,0,900,100);
         headPanel.setLayout(new BorderLayout());
 
-        // student details panel
-        JPanel StudentPanel = new JPanel();
-        StudentPanel.setBounds(0,100,550,500);
-        StudentPanel.setLayout(null);
-        StudentPanel.setBorder(BorderFactory.createLineBorder(Color.RED)); // debug
-        
         // Buttons panel
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBounds(550,100,550,500);
-        buttonPanel.setLayout(null);
+        buttonPanel.setBounds(0,100,900,120);
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER,30,40));
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
+        // Table panel
+        JPanel tablePanel = new JPanel();
+        tablePanel.setBounds(0,220,900,440);
+        tablePanel.setLayout(new FlowLayout(FlowLayout.CENTER,10,20));
+        tablePanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
 
 
 
-        frame.setSize(1100,700);
+
+
+        frame.setSize(900,700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
-//        frame.setResizable(false);
+        frame.setResizable(false);
         frame.setTitle("Student Management System");
-        frame.setVisible(true);
+
         frame.getContentPane().setBackground(new Color(0xEBD6FB));
 
 
@@ -104,33 +155,37 @@ public class GUI {
 
         headPanel.add(heading);
 
-        StudentPanel.add(forId);
-        StudentPanel.add(id);
-
-        StudentPanel.add(forName);
-        StudentPanel.add(name);
-
-        StudentPanel.add(forAge);
-        StudentPanel.add(age);
-
-        StudentPanel.add(forCourse);
-        StudentPanel.add(course);
-
-        StudentPanel.add(forGpa);
-        StudentPanel.add(gpa);
+//        StudentPanel.add(forId);
+//        StudentPanel.add(id);
+//
+//        StudentPanel.add(forName);
+//        StudentPanel.add(name);
+//
+//        StudentPanel.add(forAge);
+//        StudentPanel.add(age);
+//
+//        StudentPanel.add(forCourse);
+//        StudentPanel.add(course);
+//
+//        StudentPanel.add(forGpa);
+//        StudentPanel.add(gpa);
 
         buttonPanel.add(addStudents);
         buttonPanel.add(updateStudents);
         buttonPanel.add(removeStudents);
         buttonPanel.add(searchStudents);
+        buttonPanel.add(viewAll);
+
+        tablePanel.add(new JScrollPane(table), BorderLayout.CENTER);
 
         frame.add(buttonPanel);
         frame.add(headPanel);
-        frame.add(StudentPanel);
+        frame.add(tablePanel);
+//        frame.add(StudentPanel);
 
 
 
 
-
+        frame.setVisible(true);
     }
 }
