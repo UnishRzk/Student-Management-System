@@ -12,7 +12,7 @@ public class CustomButton extends JButton {
     private final Color baseColor = new Color(25, 118, 210);
     private final Color hoverColor = new Color(30, 136, 229);
     private final Color pressedColor = new Color(33, 150, 243);
-    private final int arc = 20; // Controls roundness
+    private final int arc = 10; // Controls roundness
 
     public CustomButton(String text, Dimension size) {
         super(text);
