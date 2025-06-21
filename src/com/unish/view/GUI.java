@@ -64,7 +64,7 @@ public class GUI {
 
         JPanel infoPanel = new JPanel();
         infoPanel.setBounds(0, 160, 900, 60);
-        infoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 20));
+        infoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 10));
         infoPanel.setBackground(new Color(0xF0F0F0));
 
         Font infoFont = new Font("SansSerif", Font.BOLD, 16);
@@ -187,7 +187,7 @@ public class GUI {
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
         table.setFillsViewportHeight(true);
-        table.setSelectionBackground(new Color(0xFFDDE8E4));
+        table.setSelectionBackground(new Color(0xF0F0F0));
         table.setSelectionForeground(Color.BLACK);
         table.setShowHorizontalLines(true);
         table.setShowVerticalLines(true);
