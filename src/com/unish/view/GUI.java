@@ -1,3 +1,5 @@
+package com.unish.view;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -16,7 +18,7 @@ public class GUI {
 
         // for the content inside of headPanel
         JLabel heading = new JLabel();
-        heading.setText("Student Management System");
+        heading.setText("com.unish.model.Student Management System");
 
         heading.setIcon(resizedLogo);
 
@@ -28,25 +30,13 @@ public class GUI {
         heading.setHorizontalAlignment(JLabel.LEFT);
 
         // For the Buttons panel
-        Dimension btnSize = new Dimension(140,40);
+        Dimension btnSize = new Dimension(175,40);
 
-        JButton addStudents = new JButton("Add Students");
-        JButton updateStudents = new JButton("Update Students");
-        JButton removeStudents = new JButton("Remove Students");
-        JButton searchStudents = new JButton("Search Student");
-        JButton viewAll = new JButton("View All");
+        CustomButton addStudents = new CustomButton("Add Students",btnSize);
+        CustomButton updateStudents = new CustomButton("Update Students",btnSize);
+        CustomButton removeStudents = new CustomButton("Remove Students",btnSize);
+        CustomButton searchStudents = new CustomButton("Search ",btnSize);
 
-        addStudents.setFont(new Font("SansSerif",Font.BOLD,12));
-        updateStudents.setFont(new Font("SansSerif",Font.BOLD,12));
-        removeStudents.setFont(new Font("SansSerif",Font.BOLD,12));
-        searchStudents.setFont(new Font("SansSerif",Font.BOLD,12));
-        viewAll.setFont(new Font("SansSerif",Font.BOLD,12));
-
-        addStudents.setPreferredSize(btnSize);
-        updateStudents.setPreferredSize(btnSize);
-        removeStudents.setPreferredSize(btnSize);
-        searchStudents.setPreferredSize(btnSize);
-        viewAll.setPreferredSize(btnSize);
 
 
         // for table panel
@@ -143,7 +133,7 @@ public class GUI {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        frame.setTitle("Student Management System");
+        frame.setTitle("com.unish.model.Student Management System");
 
         frame.getContentPane().setBackground(new Color(0xEBD6FB));
 
@@ -174,7 +164,6 @@ public class GUI {
         buttonPanel.add(updateStudents);
         buttonPanel.add(removeStudents);
         buttonPanel.add(searchStudents);
-        buttonPanel.add(viewAll);
 
         tablePanel.add(new JScrollPane(table), BorderLayout.CENTER);
 

@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package com.unish.service;
+
+import com.unish.model.Student;
+
 import java.util.List;
 
 public class StudentManager {
@@ -17,7 +20,7 @@ public class StudentManager {
     public void addStudent(Student student){
         studentList.add(student);
         fileHandler.saveToFile(studentList);
-        System.out.println("Student added Sucessfully");
+        System.out.println("com.unish.model.Student added Sucessfully");
     }
 
     public void displayAllStudents(){
@@ -45,10 +48,10 @@ public class StudentManager {
         if (student != null){
             studentList.remove(student);
             fileHandler.saveToFile(studentList);
-            System.out.println("Student Removed Sucessfully");
+            System.out.println("com.unish.model.Student Removed Sucessfully");
             return;
         }
-        System.out.println("Student not found");
+        System.out.println("com.unish.model.Student not found");
     }
 
     public void updateStudent(String id, String newName, int newAge, double newGpa) {
@@ -58,10 +61,10 @@ public class StudentManager {
             student.setAge(newAge);
             student.setGpa(newGpa);
             fileHandler.saveToFile(studentList);
-            System.out.println("Student updated successfully.");
+            System.out.println("com.unish.model.Student updated successfully.");
             return;
         }
-        System.out.println("Student not found.");
+        System.out.println("com.unish.model.Student not found.");
     }
 
 

@@ -1,3 +1,5 @@
+package com.unish.model;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -77,7 +79,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "com.unish.model.Student{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +

@@ -1,3 +1,8 @@
+package com.unish.view;
+
+import com.unish.model.Student;
+import com.unish.service.StudentManager;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,8 +18,8 @@ public class Menu {
 
         while (true) {
             header();
-            System.out.println("1. Add Student");
-            System.out.println("2. Display All Student");
+            System.out.println("1. Add ");
+            System.out.println("2. Display All ");
             System.out.println("3. Find Student By Id");
             System.out.println("4. Update Student");
             System.out.println("5. Remove Student");
