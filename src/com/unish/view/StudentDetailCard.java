@@ -10,111 +10,79 @@ public class StudentDetailCard {
     public void showCard() {
         // === Frame Setup ===
         JFrame frame = new JFrame("Student Details");
-        frame.setSize(550, 510);
+        frame.setSize(450, 510);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         frame.getContentPane().setBackground(new Color(0xE0F7FA));
         frame.setLayout(new BorderLayout());
 
         // === Card Container ===
-        JPanel cardPanel = new JPanel();
+        JPanel cardPanel = new JPanel(null);
         cardPanel.setPreferredSize(new Dimension(500, 300));
         cardPanel.setBackground(Color.WHITE);
         cardPanel.setBorder(BorderFactory.createLineBorder(new Color(0x90A4AE), 2, true));
-        cardPanel.setLayout(null);
-
-        // === Profile Picture ===
-        ImageIcon icon = new ImageIcon("logo.png");
-        Image img = icon.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-        JLabel photoLabel = new JLabel(new ImageIcon(img));
-        photoLabel.setBounds(390, 30, 120, 120);
-        photoLabel.setBorder(BorderFactory.createLineBorder(new Color(0xB0BEC5), 1));
 
         // === Title ===
-        JLabel title = new JLabel("STUDENT DETAILS");
-        title.setFont(new Font("SansSerif", Font.BOLD, 20));
+        JLabel title = new JLabel("Student Details");
+        title.setFont(new Font("SansSerif", Font.BOLD, 24));
         title.setForeground(new Color(0x00796B));
         title.setBounds(20, 15, 300, 30);
+        cardPanel.add(title);
 
-        // === Fake Data ===
-        String id = "STU1234";
-        String name = "Unish Rajak";
-        int age = 21;
-        String gender = "Male";
-        String email = "unish@example.com";
-        String phone = "9800000000";
-        String address = "Lalitpur, Nepal";
-        LocalDate dob = LocalDate.of(2004, 2, 15);
-        String department = "BCA";
-        int year = 3;
-        String semester = "Spring";
-        double gpa = 3.82;
-        String advisor = "Prof. Sharma";
-        LocalDate enrollmentDate = LocalDate.of(2022, 4, 15);
-        boolean isActive = true;
+        // === Profile Picture ===
+        ImageIcon icon = new ImageIcon("logo.png"); // fallback image
+        Image img = icon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
+        JLabel photoLabel = new JLabel(new ImageIcon(img));
+        photoLabel.setBounds(270, 60, 120, 120);
+        photoLabel.setBorder(BorderFactory.createLineBorder(new Color(0xB0BEC5), 1));
+        cardPanel.add(photoLabel);
 
         // === Info Panel ===
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(0, 2, 12, 10));
-        infoPanel.setBounds(25, 60, 340, 400);
+        JPanel infoPanel = new JPanel(new GridBagLayout());
         infoPanel.setOpaque(false);
+        infoPanel.setBounds(20, 60, 320, 380);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
 
         Font labelFont = new Font("SansSerif", Font.PLAIN, 13);
         Font valueFont = new Font("SansSerif", Font.BOLD, 13);
         Color valueColor = new Color(0x333333);
 
-        infoPanel.add(makeLabel("ID:", labelFont));
-        infoPanel.add(makeValue(id, valueFont, valueColor));
+        int row = 0;
+        row = addRow(infoPanel, gbc, row, "Name:", "Unish Rajak", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Gender:", "Male", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Age:", "21", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "DOB:", formatDate(LocalDate.of(2004, 2, 15)), labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Department:", "BCA", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Year:", "3", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Semester:", "Spring", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "GPA:", "3.82", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Advisor:", "Prof. Sharma", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Enrollment:", formatDate(LocalDate.of(2022, 4, 15)), labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Phone:", "9800000000", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Email:", "unish@example.com", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Address:", "Lalitpur, Nepal", labelFont, valueFont, valueColor);
+        row = addRow(infoPanel, gbc, row, "Active:", "Yes", labelFont, valueFont, valueColor);
 
-        infoPanel.add(makeLabel("Name:", labelFont));
-        infoPanel.add(makeValue(name, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Gender:", labelFont));
-        infoPanel.add(makeValue(gender, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Age:", labelFont));
-        infoPanel.add(makeValue(String.valueOf(age), valueFont, valueColor));
-
-        infoPanel.add(makeLabel("DOB:", labelFont));
-        infoPanel.add(makeValue(dob.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Department:", labelFont));
-        infoPanel.add(makeValue(department, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Year:", labelFont));
-        infoPanel.add(makeValue(String.valueOf(year), valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Semester:", labelFont));
-        infoPanel.add(makeValue(semester, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("GPA:", labelFont));
-        infoPanel.add(makeValue(String.valueOf(gpa), valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Advisor:", labelFont));
-        infoPanel.add(makeValue(advisor, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Enrollment:", labelFont));
-        infoPanel.add(makeValue(enrollmentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Phone:", labelFont));
-        infoPanel.add(makeValue(phone, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Email:", labelFont));
-        infoPanel.add(makeValue(email, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Address:", labelFont));
-        infoPanel.add(makeValue(address, valueFont, valueColor));
-
-        infoPanel.add(makeLabel("Active:", labelFont));
-        infoPanel.add(makeValue(isActive ? "Yes" : "No", valueFont, valueColor));
-
-        // === Add to card ===
-        cardPanel.add(title);
         cardPanel.add(infoPanel);
-        cardPanel.add(photoLabel);
-
         frame.add(cardPanel, BorderLayout.CENTER);
         frame.setVisible(true);
+    }
+
+    private int addRow(JPanel panel, GridBagConstraints gbc, int row, String labelText, String valueText,
+                       Font labelFont, Font valueFont, Color valueColor) {
+        gbc.gridx = 0;
+        gbc.gridy = row;
+        gbc.weightx = 0;
+        panel.add(makeLabel(labelText, labelFont), gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1;
+        panel.add(makeValue(valueText, valueFont, valueColor), gbc);
+
+        return row + 1;
     }
 
     private JLabel makeLabel(String text, Font font) {
@@ -129,5 +97,14 @@ public class StudentDetailCard {
         label.setFont(font);
         label.setForeground(color);
         return label;
+    }
+
+    private String formatDate(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    // main for testing
+    public static void main(String[] args) {
+        new StudentDetailCard().showCard();
     }
 }
