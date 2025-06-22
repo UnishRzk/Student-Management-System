@@ -42,6 +42,7 @@ public class SearchForm {
         searchButton.addActionListener((ActionEvent e) -> {
             String id = idField.getText();
             String name = nameField.getText();
+                new StudentDetailCard().showCard();  // opens the ID-style card
             JOptionPane.showMessageDialog(frame, "Searching for: " + (id.isEmpty() ? name : id));
         });
 
