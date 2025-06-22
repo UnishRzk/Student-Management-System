@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
@@ -134,6 +136,41 @@ public class GUI {
 
         creditPanel.add(creditLabel);
 
+
+//        Action Listeners For the Buttons
+
+        addStudents.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                StudentFormPanel studentform = new StudentFormPanel(); // create object
+                studentform.showWindow(); // call method from another class
+            }
+        });
+
+        updateStudents.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UpdateForm updateForm = new UpdateForm(); // create object
+                updateForm.showWindow(); // call method from another class
+            }
+        });
+
+        removeStudents.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RemoveForm removeForm = new RemoveForm(); // create object
+                removeForm.showWindow(); // call method from another class
+            }
+        });
+
+        searchStudents.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchForm searchForm = new SearchForm(); // create object
+                searchForm.showWindow(); // call method from another class
+            }
+        });
+
         // ===== Add All Panels =====
         frame.add(headPanel);
         frame.add(buttonPanel);
@@ -196,8 +233,8 @@ public class GUI {
         JTableHeader header = table.getTableHeader();
         header.setFont(new Font("SansSerif", Font.BOLD, 15));
         header.setForeground(Color.WHITE);
-        header.setBackground(new Color(0x687FE5));
-        header.setReorderingAllowed(false);
+        header.setBackground(new Color(25, 118, 210));
+        header.setReorderingAllowed(true);
         header.setResizingAllowed(true);
         header.setOpaque(true);
         header.setPreferredSize(new Dimension(header.getWidth(), 40));

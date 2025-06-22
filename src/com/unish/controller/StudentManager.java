@@ -1,4 +1,4 @@
-package com.unish.service;
+package com.unish.controller;
 
 import com.unish.model.Student;
 

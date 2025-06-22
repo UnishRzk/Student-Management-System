@@ -1,7 +1,7 @@
 package com.unish.view;
 
 import com.unish.model.Student;
-import com.unish.service.StudentManager;
+import com.unish.controller.StudentManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;
