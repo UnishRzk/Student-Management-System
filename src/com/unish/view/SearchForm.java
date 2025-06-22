@@ -12,11 +12,11 @@ public class SearchForm {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());
-        frame.getContentPane().setBackground(new Color(0xEBD6FB));
+        frame.getContentPane().setBackground(new Color(0xF0F0F0));
         frame.setIconImage(new ImageIcon("logo.png").getImage());
 
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(new Color(0xEBD6FB));
+        panel.setBackground(new Color(0xF0F0F0));
         panel.setBorder(BorderFactory.createEmptyBorder(30, 20, 30, 20));
 
         GridBagConstraints gbc = new GridBagConstraints();

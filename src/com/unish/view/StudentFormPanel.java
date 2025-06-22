@@ -12,13 +12,13 @@ public class StudentFormPanel {
         frame.setSize(500, 700);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
-        frame.getContentPane().setBackground(new Color(0xEBD6FB));
+        frame.getContentPane().setBackground(new Color(0xF0F0F0));
         frame.setResizable(false);
         frame.setIconImage(new ImageIcon("logo.png").getImage());
 
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
-        formPanel.setBackground(new Color(0xEBD6FB));
+        formPanel.setBackground(new Color(0xF0F0F0));
         formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -38,16 +38,16 @@ public class StudentFormPanel {
         JRadioButton male = new JRadioButton("Male");
         JRadioButton female = new JRadioButton("Female");
         JRadioButton other = new JRadioButton("Other");
-        male.setBackground(new Color(0xEBD6FB));
-        female.setBackground(new Color(0xEBD6FB));
-        other.setBackground(new Color(0xEBD6FB));
+        male.setBackground(new Color(0xF0F0F0));
+        female.setBackground(new Color(0xF0F0F0));
+        other.setBackground(new Color(0xF0F0F0));
         ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(male);
         genderGroup.add(female);
         genderGroup.add(other);
 
         JPanel genderPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        genderPanel.setBackground(new Color(0xEBD6FB));
+        genderPanel.setBackground(new Color(0xF0F0F0));
         genderPanel.add(male);
         genderPanel.add(female);
         genderPanel.add(other);
@@ -65,7 +65,7 @@ public class StudentFormPanel {
         JTextField advisorField = new JTextField();
         JTextField enrollDateField = new JTextField("YYYY-MM-DD");
         JCheckBox isActiveBox = new JCheckBox("Is Active");
-        isActiveBox.setBackground(new Color(0xEBD6FB));
+        isActiveBox.setBackground(new Color(0xF0F0F0));
 
         // Add Form Rows
         addField(formPanel, gbc, "Student ID:", idField, labelFont);

@@ -12,13 +12,13 @@ public class UpdateForm {
         frame.setSize(500, 400);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        frame.getContentPane().setBackground(new Color(0xEBD6FB));
+        frame.getContentPane().setBackground(new Color(0xF0F0F0));
         frame.setLayout(new BorderLayout());
         frame.setIconImage(new ImageIcon("logo.png").getImage());
 
         // === Panel Setup ===
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(new Color(0xEBD6FB));
+        panel.setBackground(new Color(0xF0F0F0));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         GridBagConstraints gbc = new GridBagConstraints();
