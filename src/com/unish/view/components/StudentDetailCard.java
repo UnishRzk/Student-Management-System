@@ -1,4 +1,4 @@
-package com.unish.view;
+package com.unish.view.components;
 
 import javax.swing.*;
 import java.awt.*;

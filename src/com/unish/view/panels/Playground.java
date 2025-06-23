@@ -1,4 +1,6 @@
-package com.unish.view;
+package com.unish.view.panels;
+
+import com.unish.view.components.CustomButton;
 
 import javax.swing.*;
 import java.awt.*;

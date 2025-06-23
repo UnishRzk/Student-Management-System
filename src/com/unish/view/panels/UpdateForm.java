@@ -1,4 +1,4 @@
-package com.unish.view;
+package com.unish.view.panels;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,75 +9,64 @@ public class UpdateForm {
     public void showWindow() {
         // === Frame Setup ===
         JFrame frame = new JFrame("Update Student");
-        frame.setSize(500, 420);
+        frame.setSize(500, 350);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
+        frame.setLayout(null);
         frame.getContentPane().setBackground(new Color(0xF0F0F0));
-        frame.setLayout(new BorderLayout());
         frame.setIconImage(new ImageIcon("logo.png").getImage());
-
-        // === Title ===
-        JLabel title = new JLabel("UPDATE STUDENT");
-        title.setFont(new Font("SansSerif", Font.BOLD, 24));
-        title.setForeground(new Color(0x00796B));
-        title.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
-
-        JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        titlePanel.setBackground(new Color(0xF0F0F0));
-        titlePanel.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 0));
-        titlePanel.add(title);
-
-        frame.add(titlePanel, BorderLayout.NORTH);
-
-        // === Panel Setup ===
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(new Color(0xF0F0F0));
-        panel.setBorder(BorderFactory.createEmptyBorder(0, 40, 20, 40));
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(8, 12, 8, 12);
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.weightx = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
 
         Font labelFont = new Font("SansSerif", Font.BOLD, 14);
         Font fieldFont = new Font("SansSerif", Font.PLAIN, 13);
 
-        // === Fields ===
+        // === Title ===
+        JLabel title = new JLabel("UPDATE STUDENT");
+        title.setFont(new Font("SansSerif", Font.BOLD, 24));
+        title.setForeground(new Color(25, 118, 210));
+        title.setBounds(145, 20, 250, 30);
+        frame.add(title);
+
+        // === Labels and Inputs ===
+        JLabel idLabel = new JLabel("Student ID:");
+        idLabel.setFont(labelFont);
+        idLabel.setBounds(50, 80, 120, 25);
+        frame.add(idLabel);
+
         JTextField idField = new JTextField();
         styleTextField(idField, fieldFont);
+        idField.setBounds(180, 80, 240, 28);
+        frame.add(idField);
+
+        JLabel fieldLabel = new JLabel("Field to Update:");
+        fieldLabel.setFont(labelFont);
+        fieldLabel.setBounds(50, 130, 120, 25);
+        frame.add(fieldLabel);
 
         String[] updatableFields = {
                 "Name", "Age", "Gender", "Email", "Phone Number",
                 "Address", "Date of Birth", "Department", "Year",
                 "Semester", "GPA", "Advisor", "Enrollment Date", "Active Status"
         };
-
         JComboBox<String> fieldBox = new JComboBox<>(updatableFields);
         fieldBox.setFont(fieldFont);
-        fieldBox.setBackground(Color.WHITE);
+        fieldBox.setBounds(180, 130, 240, 28);
+        frame.add(fieldBox);
+
+        JLabel newValueLabel = new JLabel("New Value:");
+        newValueLabel.setFont(labelFont);
+        newValueLabel.setBounds(50, 180, 120, 25);
+        frame.add(newValueLabel);
 
         JTextField newValueField = new JTextField();
         styleTextField(newValueField, fieldFont);
+        newValueField.setBounds(180, 180, 240, 28);
+        frame.add(newValueField);
 
-        // === Add Form Fields ===
-        addField(panel, gbc, "Student ID:", idField, labelFont);
-        addField(panel, gbc, "Field to Update:", fieldBox, labelFont);
-        addField(panel, gbc, "New Value:", newValueField, labelFont);
-
-        // === Button Panel ===
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(new Color(0xF0F0F0));
+        // === Button ===
         JButton updateButton = new JButton("Update");
         styleButton(updateButton);
-        buttonPanel.add(updateButton);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        gbc.gridwidth = 2;
-        panel.add(buttonPanel, gbc);
+        updateButton.setBounds(190, 230, 120, 40);
+        frame.add(updateButton);
 
         // === Button Action ===
         updateButton.addActionListener((ActionEvent e) -> {
@@ -97,36 +86,16 @@ public class UpdateForm {
                     JOptionPane.INFORMATION_MESSAGE);
         });
 
-        // === Add Panel to Frame ===
-        frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
 
     // === Helper Methods ===
-
-    private void addField(JPanel panel, GridBagConstraints gbc, String labelText, Component input, Font labelFont) {
-        JLabel label = new JLabel(labelText);
-        label.setFont(labelFont);
-        label.setForeground(new Color(0x333333));
-
-        gbc.gridx = 0;
-        gbc.gridwidth = 1;
-        panel.add(label, gbc);
-
-        gbc.gridx = 1;
-        panel.add(input, gbc);
-
-        gbc.gridy++;
-    }
-
     private void styleTextField(JTextField textField, Font font) {
-        textField.setPreferredSize(new Dimension(200, 28));
         textField.setFont(font);
         textField.setMargin(new Insets(4, 6, 4, 6));
     }
 
     private void styleButton(JButton button) {
-        button.setPreferredSize(new Dimension(120, 40));
         button.setFont(new Font("SansSerif", Font.BOLD, 14));
         button.setBackground(new Color(25, 118, 210)); // Material Blue
         button.setForeground(Color.WHITE);

@@ -1,5 +1,11 @@
 package com.unish.view;
 
+import com.unish.view.components.CustomButton;
+import com.unish.view.panels.RemoveForm;
+import com.unish.view.panels.SearchForm;
+import com.unish.view.panels.StudentFormPanel;
+import com.unish.view.panels.UpdateForm;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
